@@ -12,8 +12,14 @@ const token = process.env.TELEGRAM_BOT_KEY;
 // starts a new Telegram bot instance that "polls" for updates
 const bot = new TelegramBot(token, { polling: true });
 
-// Queries the latest XKCD comic and sends as a telegram message whenever the server is instantiated.
+
+// server home page
 app.get('/', (req, res) => {
+  res.send('Navigate to /sendMessage for the comic');
+});
+
+// queries the latest XKCD comic and sends as a telegram message whenever the server is instantiated.
+app.get('/sendMessage', (req, res) => {
   fetch('https://xkcd.com/info.0.json')
     .then(response => {
       return response.json();
